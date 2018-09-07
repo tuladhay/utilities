@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!-- Run ros_video_saver python script-->
+<launch>
+    <!-- Start the python script -->
+    <node name="ros_video_saver" pkg="please_gimme_a_name" type="ros_video_saver.py" output="screen"> 
+	<param name="image_width" value="640" />
+	<param name="image_height" value="480" />
+	<param name="image_topic" value="/pseudo_video_node" />
+	
+	<param name="save_path" value="stairway/to/heaven/" />
+	<param name="save_filename" value="video" />
+	<!--Video filename will have time-stamp of YYYY-MM-DD_HH-MM-SS appended to it-->
+	<param name="save_framerate" value="10" />
+	
+        <param name="verbose" value="True" type="bool" />
+        <param name="display" value="True" type="bool" />
+    </node>
+</launch>
