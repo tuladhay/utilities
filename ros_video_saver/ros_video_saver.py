@@ -84,12 +84,10 @@ class RosVideoSaver():
     #convert from ros to cv
     self.cv_image = self.bridge.imgmsg_to_cv2(im_msg, "bgr8")
     #resize image in case its not in the size we want
-    self.cv_image = cv2.resize(self.cv_image, (self.image_width, self.image_height))
-    self.have_image = True
-
     (height,width,_) = self.cv_image.shape
-    assert (height==self.image_height), "param:image_height != received image height"
-    assert (width==self.image_width), "param:image_width != received image width"
+    if not (height==self.image_height and width==self.image_width):
+      self.cv_image = cv2.resize(self.cv_image, (self.image_width, self.image_height))
+    self.have_image = True
     
     if self.display:
       cv2.imshow("Viewer", self.cv_image)
